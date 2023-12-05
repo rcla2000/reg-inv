@@ -12,6 +12,7 @@ Una vez que se haya clonado el repositorio acceda a la carpeta generada, dentro 
 ejecute el comando **composer install** para descargar todas las dependencias del proyecto.
 
 Copie el archivo **.env.example** y renombrelo como **.env** aquí debe colocar las credenciales de la base de datos,  
-luego de haber configurado la conexión ejecute el comando **php artisan config:clear**
+luego de haber configurado la conexión ejecute el comando **php artisan key:generate**. Habiendo terminado esto  
+limpie la cache de configuración con el comando **php artisan config:clear**
 
 Para lanzar el proyecto en el servidor local ejecute el comando **php artisan serve**
