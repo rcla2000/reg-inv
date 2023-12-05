@@ -2,9 +2,9 @@
 
 ## Requerimientos
 
-- [PHP 8.2.4]
-- [Composer]
-- [Base de datos MySQL o MariaDB]
+- PHP 8.2.4
+- Composer
+- Base de datos MySQL o MariaDB
 
 ### Pasos para ejecutar el proyecto
 
