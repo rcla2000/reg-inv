@@ -96,14 +96,23 @@ class RegistroController extends Controller
 
     }
 
-    private function calificarInvestigador($idInvestigador) {
-        // Calificación de grados académicos
-        $calificacion1 = DocsGradosAcademico::select(DB::raw('MAX(grados_academicos.medicion) as nota'))
-            ->join('grados_academicos', 'docs_grados_academicos.id_tipo', '=', 'grados_academicos.id_grado')
-            ->where('docs_grados_academicos.id_investigador', 2)
-            ->first()->nota;
-        
+    function calificacionesMaximasEstablecidas() {
+        // Calificaciones máximas de cada apartado
+        $gradoAcademico = GradosAcademico::select('medicion')->where('id_grado', 0)->first()->medicion;
+        $participaciones = ParticipacionCyt::select('medicion')->where('padre', null)->get();
+        $desempenos = DesempenoCyt::select('medicion')->where('padre', null)->get();
+        $publicaciones = PublicacionesCyt::select('medicion')->where('id_publicacion', 0)->first()->medicion;
 
+        return [
+            'gradoAcademico' => $gradoAcademico,
+            'participacion1' => $participaciones[0]->medicion,
+            'participacion2' => $participaciones[1]->medicion,
+            'participacion3' => $participaciones[2]->medicion,
+            'desempeno1' => $desempenos[0]->medicion,
+            'desempeno2' => $desempenos[1]->medicion,
+            'desempeno3' => $desempenos[2]->medicion,
+            'publicaciones' => $publicaciones
+        ];
     }
 
     function guardarInvestigador(Request $request) {
@@ -118,7 +127,8 @@ class RegistroController extends Controller
             'direccion' => 'required|string',
             'telefono' => 'required|string|regex:/^[267][0-9]{3}-[0-9]{4}$/',
             'email' => 'required|email',
-            'email_confirmacion' => 'required|email'
+            'email_confirmacion' => 'required|email',
+            'puntaje' => 'required'
         ]);
 
         try {

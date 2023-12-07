@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'bienvenida')->name('bienvenida');
 Route::get('/registro', [RegistroController::class, 'inicio'])->name('registro.inicio');
 Route::post('/registro', [RegistroController::class, 'guardarInvestigador'])->name('registro.guardar');
+Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacionesMaximasEstablecidas']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

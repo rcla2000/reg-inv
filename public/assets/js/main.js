@@ -99,7 +99,25 @@ const establecerNota = (nota, mayorNota) => {
     return nota;
 }
 
-const calificacionInvestigador = () => {
+const obtenerCalificacionesMaximasEstablecidas = async () => {
+    try {
+        const peticion = await fetch(`/calificaciones-maximas`);
+        const data = peticion.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+const calificacionInvestigador = async () => {
+    const calificacionesMaximas = await obtenerCalificacionesMaximasEstablecidas();
+
+    if (!calificacionesMaximas) {
+        Swal.fire('Error', 'Ha ocurrido un error al calificar al investigador', 'error');
+        return;
+    }
+
     const inputsFile = document.querySelectorAll('input[data-habilitado="true"]');
     let notaGradoAcademico = 0,
         notaParticipacion1 = 0,
@@ -142,14 +160,14 @@ const calificacionInvestigador = () => {
         }
     });
 
-    notaGradoAcademico = establecerNota(notaGradoAcademico, 20);
-    notaParticipacion1 = establecerNota(notaParticipacion1, 10);
-    notaParticipacion2 = establecerNota(notaParticipacion2, 10);
-    notaParticipacion3 = establecerNota(notaParticipacion3, 10);
-    notaDesempeno1 = establecerNota(notaDesempeno1, 15);
-    notaDesempeno2 = establecerNota(notaDesempeno2, 10);
-    notaDesempeno3 = establecerNota(notaDesempeno3, 10);
-    notaPublicaciones = establecerNota(notaPublicaciones, 15);
+    notaGradoAcademico = establecerNota(notaGradoAcademico, calificacionesMaximas.gradoAcademico);
+    notaParticipacion1 = establecerNota(notaParticipacion1, calificacionesMaximas.participacion1);
+    notaParticipacion2 = establecerNota(notaParticipacion2, calificacionesMaximas.participacion2);
+    notaParticipacion3 = establecerNota(notaParticipacion3, calificacionesMaximas.participacion3);
+    notaDesempeno1 = establecerNota(notaDesempeno1, calificacionesMaximas.desempeno1);
+    notaDesempeno2 = establecerNota(notaDesempeno2, calificacionesMaximas.desempeno2);
+    notaDesempeno3 = establecerNota(notaDesempeno3, calificacionesMaximas.desempeno3);
+    notaPublicaciones = establecerNota(notaPublicaciones, calificacionesMaximas.publicaciones);
     notaFinal = notaGradoAcademico + notaParticipacion1 + notaParticipacion2 + notaParticipacion3;
     notaFinal += notaDesempeno1 + notaDesempeno2 + notaDesempeno3 + notaPublicaciones;
     return notaFinal;
@@ -300,11 +318,11 @@ chksSecciones.forEach(chk => {
     });
 });
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
    
     if (totalErrores() == 0) {
-        const calificacion = calificacionInvestigador();
+        const calificacion = await calificacionInvestigador();
         if (calificacion >= 50) {
             // Se guarda en el input hidden la calificacion obtenida para enviarla al servidor
             puntaje.value = calificacion;
