@@ -68,7 +68,7 @@ class Investigador extends Model
 		'id_categoria'
 	];
 
-	public function puntaje()
+	public function categoria()
 	{
 		return $this->belongsTo(Puntaje::class, 'id_categoria');
 	}
@@ -78,7 +78,7 @@ class Investigador extends Model
 		return $this->belongsTo(Departamento::class, 'id_departamento');
 	}
 
-	public function estados_investigadore()
+	public function estados_investigador()
 	{
 		return $this->belongsTo(EstadosInvestigador::class, 'id_estado');
 	}

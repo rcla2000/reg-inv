@@ -1,3 +1,9 @@
+:root {
+    --gris: #343c44;
+    --azul: #14347c;
+    --blanco: #f2f2f2;
+}
+
 .contenedor {
     width: 75vw;
     margin: 0 auto;
@@ -34,6 +40,54 @@
 .oculto {
     display: none;
 }
+
+/* Estilo de listado de documentos de investigador  */
+.documentos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+
+    .doc {
+        background-color: var(--gris);
+        display: flex;
+        margin: 0.75rem 0.5rem;
+
+        .icono {
+            background-color: var(--azul);
+            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+                color: var(--blanco);
+                font-size: 1.75rem;
+            }
+        }
+
+        span {
+            color: var(--blanco);
+            font-weight: 500;
+            font-size: 1.6rem;
+            padding: 0.25rem 0.5rem;
+            
+        }
+    }
+
+    .enlace-doc{
+        text-decoration: none;
+        transition: all ease 250ms;
+    }
+
+    .enlace-doc:hover {
+        opacity: 0.85;
+    }
+}
+
+
 
 /* Responsive de select 2*/
 .select2.select2-container.select2-container--bootstrap-5 {

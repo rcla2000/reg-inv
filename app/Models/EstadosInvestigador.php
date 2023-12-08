@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EstadosInvestigadore
+ * Class EstadosInvestigador
  * 
  * @property int $id_estado
  * @property string $nombre
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class EstadosInvestigadore extends Model
+class EstadosInvestigador extends Model
 {
 	protected $table = 'estados_investigadores';
 	protected $primaryKey = 'id_estado';

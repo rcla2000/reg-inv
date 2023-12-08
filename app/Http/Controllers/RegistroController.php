@@ -13,6 +13,7 @@ use App\Models\Investigador;
 use App\Models\Municipio;
 use App\Models\ParticipacionCyt;
 use App\Models\PublicacionesCyt;
+use App\Models\Puntaje;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -97,7 +98,7 @@ class RegistroController extends Controller
     }
 
     function calificacionesMaximasEstablecidas() {
-        // Calificaciones máximas de cada apartado
+        // Calificaciones máximas de cada apartado colocadas a los investigadores
         $gradoAcademico = GradosAcademico::select('medicion')->where('id_grado', 0)->first()->medicion;
         $participaciones = ParticipacionCyt::select('medicion')->where('padre', null)->get();
         $desempenos = DesempenoCyt::select('medicion')->where('padre', null)->get();
@@ -113,6 +114,28 @@ class RegistroController extends Controller
             'desempeno3' => $desempenos[2]->medicion,
             'publicaciones' => $publicaciones
         ];
+    }
+
+    private function asignarCategoriaAInvestigador($puntajeObtenido) {
+        $idPuntajeMaximo = Puntaje::select('id_puntaje')
+            ->where('puntaje_min', function ($queryBuilder) {
+                $queryBuilder->select(DB::raw('MAX(puntaje_min) as puntaje_min'))->from('puntajes')->first();
+            })->first()->id_puntaje;
+        
+        $puntaje = Puntaje::find($idPuntajeMaximo);
+        
+        // Si el investogador ha alcanzado el puntaje máximo
+        if ($puntajeObtenido >= $puntaje->puntaje_min) {
+            return $idPuntajeMaximo;
+        }
+
+        $id_puntaje = DB::select('select id_puntaje from puntajes where ? >= puntaje_min and ? < puntaje_max;',
+            [
+                $puntajeObtenido,
+                $puntajeObtenido
+            ])[0]->id_puntaje;
+    
+        return $id_puntaje;
     }
 
     function guardarInvestigador(Request $request) {
@@ -148,6 +171,7 @@ class RegistroController extends Controller
             $investigador->email = $request->email_confirmacion;
             $investigador->puntaje = $request->puntaje;
             $investigador->id_estado = 1;
+            $investigador->id_categoria = $this->asignarCategoriaAInvestigador($investigador->puntaje);
             $investigador->save();
 
             // Se obtienen los id de los grados academicos para recorrer todos los name de los input file de grados academicos
