@@ -13,8 +13,8 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page"
                         href="{{ route('investigadores.inicio') }}">
+                        <i class="fa-solid fa-pen-to-square me-1"></i>
                         Revisión
-                        <i class="fa-solid fa-pen-to-square ms-1"></i>
                     </a>
                 </li>
             </ul>

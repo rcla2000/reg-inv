@@ -3,7 +3,9 @@
 @section('titulo', 'Registro')
 
 @section('contenido')
-    <div class="p-3 w-100">
+    @include('components.navbar')
+    <div class="espacio-menu"></div>
+    <div class="container">
         <div class="row">
             <h1 class="text-center">Revisión de investigador</h1>
         </div>
@@ -139,7 +141,59 @@
                 <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
             @endif
         </div>
-        <div class="row mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Acciones</h3>
+                        <hr>
+                        <div class="p-3">
+                            <h4 class="mb-3">Observaciones:</h4>
+                            <div class="observaciones">
+                                <div class="observacion">
+                                    <span>Lorem ipsum dolor sit amet.</span>
+                                    <i class="fa-solid fa-circle-xmark" data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
+                                </div>
+                                <div class="observacion">
+                                    <span>Lorem ipsum dolor sit amet.</span>
+                                    <i class="fa-solid fa-circle-xmark" data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
+                                </div>
+                                <div class="observacion">
+                                    <span>Lorem ipsum dolor sit amet.</span>
+                                    <i class="fa-solid fa-circle-xmark" data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
+                                </div>
+                            </div>
+                            <a class="btn btn-secondary me-3 btn-block"
+                                data-bs-toggle="collapse" 
+                                href="#collapseObservaciones" role="button" 
+                                aria-expanded="false" aria-controls="collapseObservaciones">
+                                <i class="fa-solid fa-file-pen me-1"></i>
+                                Agregar observaciones
+                            </a>
+                            <div class="collapse mt-3 mb-3" id="collapseObservaciones">
+                                <label for="observaciones">Digite sus observaciones: </label>
+                                <textarea id="observaciones" rows="5" class="form-control"></textarea>
+                                <button type="buttton" class="btn btn-warning mt-2">
+                                    <i class="fa-solid fa-paper-plane me-1"></i>
+                                    Enviar
+                                </button>
+                            </div>
+                            <hr class="mt-4">
+                            <h4 class="mt-3 mb-3">Aprobar o denegar al investigador:</h4>
+                            <a href="" class="btn btn-success me-3">
+                                <i class="fa-solid fa-square-check me-1"></i>
+                                Aprobar
+                            </a>
+                            <a href="" class="btn btn-danger me-3">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                Denegar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-3">
             <div class="col-12">
                 <a href="{{ route('investigadores.inicio') }}" class="btn btn-primary">Volver al listado</a>
             </div>
