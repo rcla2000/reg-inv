@@ -2,6 +2,8 @@
 
 @section('titulo', 'Registro')
 
+
+
 @section('contenido')
     <div class="contenedor">
         <form action="{{ route('registro.guardar') }}" method="POST" enctype="multipart/form-data" id="frm-investigador"
@@ -174,7 +176,7 @@
                                 <input type="file" multiple data-medicion="GA|{{ $g->medicion }}" name="archivos_ga_{{ $g->id_grado }}[]"
                                     id="archivos_ga_{{ $g->id_grado }}" class="oculto">
                                 <div class="invalid-feedback"></div>
-                                <p class="mb-3 mt-2">Adjuntar en formato PDF su título obtenido (Máximo 10MB)</p>
+                                <p class="mb-3 mt-2">{{ $g->comentario_archivo }} (Máximo 10MB)</p>
                                 <div class="listado-archivos"></div>
                             </div>
                         </div>

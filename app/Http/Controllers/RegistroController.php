@@ -129,11 +129,8 @@ class RegistroController extends Controller
             return $idPuntajeMaximo;
         }
 
-        $id_puntaje = DB::select('select id_puntaje from puntajes where ? >= puntaje_min and ? < puntaje_max;',
-            [
-                $puntajeObtenido,
-                $puntajeObtenido
-            ])[0]->id_puntaje;
+        $id_puntaje = DB::select('select id_puntaje from puntajes where ? between puntaje_min and puntaje_max;',
+            [$puntajeObtenido])[0]->id_puntaje;
     
         return $id_puntaje;
     }
