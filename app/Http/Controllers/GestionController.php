@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class GestionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function listarInvestigadores() {
         $investigadores = Investigador::select('id_investigador',
             'dui','primer_nombre', 'segundo_nombre', 'primer_apellido', 

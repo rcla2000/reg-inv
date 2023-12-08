@@ -3,6 +3,8 @@
 @section('titulo', 'Registro')
 
 @section('contenido')
+    @include('components.navbar')
+    <div class="espacio-menu"></div>
     <div class="p-3 w-100">
         <div class="row">
             <h1 class="text-center">Resolución</h1>
@@ -22,14 +24,19 @@
                     <tbody>
                         @foreach ($investigadores as $investigador)
                             <tr>
-                                <td>{{ $investigador->primer_nombre . ' ' . $investigador->segundo_nombre . ' ' . $investigador->primer_apellido . ' ' . $investigador->segundo_apellido }}</td>
+                                <td>{{ $investigador->primer_nombre . ' ' . $investigador->segundo_nombre . ' ' . $investigador->primer_apellido . ' ' . $investigador->segundo_apellido }}
+                                </td>
                                 <td>{{ $investigador->dui }}</td>
                                 <td>{{ $investigador->email }}</td>
                                 <td>{{ $investigador->telefono }}</td>
                                 <td class="d-flex justify-content-center">
-                                    <a href="{{ route('investigadores.mostrar', $investigador->id_investigador) }}" 
-                                        class="btn btn-sm btn-success">
+                                    <a href="{{ route('investigadores.mostrar', $investigador->id_investigador) }}"
+                                        class="btn btn-sm btn-success me-1"
+                                        data-bs-toggle="tooltip" data-bs-title="Revisar documentación de investigador">
                                         Revisión
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="Eliminar investigador">
+                                        <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                 </td>
                             </tr>

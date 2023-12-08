@@ -1,5 +1,5 @@
 :root {
-    --gris: #343c44;
+    --gris: #343c4c;
     --azul: #14347c;
     --blanco: #f2f2f2;
 }
@@ -39,6 +39,19 @@
 
 .oculto {
     display: none;
+}
+
+.bg-conacyt {
+    background-color: var(--gris) !important;
+}
+
+.logo-institucion img {
+    width: 50px;
+}
+
+.espacio-menu {
+    width: 100%;
+    height: 87px;
 }
 
 /* Estilo de listado de documentos de investigador  */
