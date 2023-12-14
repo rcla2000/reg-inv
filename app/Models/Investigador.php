@@ -110,6 +110,6 @@ class Investigador extends Model
 
 	public function observaciones()
 	{
-		return $this->hasMany(Observacion::class, 'id_investigador');
+		return $this->hasMany(Observacion::class, 'id_investigador', 'id_investigador');
 	}
 }

@@ -38,7 +38,11 @@ class GestionController extends Controller
             try {
                 $investigador->id_estado = $request->idEstado;
                 $investigador->save();
-                return response()->json(['message' => 'Estado de investigador actualizado correctamente']);
+                return response()->json(
+                    [
+                        'message' => $request->idEstado == 3 ? 'Investigador aprobado exitosamente' : 'El investigador ha sido denegado'
+                    ]
+                );
             } catch (Exception $e) {
                 return response()->json(['message' => 'Ha ocurrido un error al actualizar el estado del investigador'], 500);
             }

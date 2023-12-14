@@ -36,6 +36,6 @@ class Observacion extends Model
 
 	public function investigadore()
 	{
-		return $this->belongsTo(Investigador::class, 'id_investigador');
+		return $this->belongsTo(Investigador::class, 'id_investigador', 'id_investigador');
 	}
 }
