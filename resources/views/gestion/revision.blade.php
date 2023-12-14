@@ -78,7 +78,7 @@
                                 <span>{{ $doc->grados_academico->nombre }}</span>
                             </div>
                         </a>
-                        <p>{{ storage_path($doc->archivo) }}</p>
+                        <p>{{ asset("storage/$doc->archivo") }}</p>
                     @endforeach
                 </div>
             @else
