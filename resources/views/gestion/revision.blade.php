@@ -148,6 +148,7 @@
                         <h3 class="card-title mb-3">Acciones</h3>
                         <hr>
                         <div class="p-3">
+                            <input type="hidden" value="{{ $investigador->id_investigador }}" id="id-inv">
                             <h4 class="mb-3">Observaciones:</h4>
                             <div class="observaciones">
                                 <div class="observacion">
@@ -180,11 +181,11 @@
                             </div>
                             <hr class="mt-4">
                             <h4 class="mt-3 mb-3">Aprobar o denegar al investigador:</h4>
-                            <a href="" class="btn btn-success me-3">
+                            <a href="" class="btn btn-success me-3" id="aprobar-inv">
                                 <i class="fa-solid fa-square-check me-1"></i>
                                 Aprobar
                             </a>
-                            <a href="" class="btn btn-danger me-3">
+                            <a href="" class="btn btn-danger me-3" id="denegar-inv">
                                 <i class="fa-solid fa-xmark me-1"></i>
                                 Denegar
                             </a>
@@ -199,4 +200,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/revision.js') }}"></script>
 @endsection

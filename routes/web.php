@@ -26,6 +26,7 @@ Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacione
 // Rutas para gestionar registros de investigadores
 Route::get('/gestion/investigadores', [GestionController::class, 'listarInvestigadores'])->name('investigadores.inicio');
 Route::get('/gestion/investigadores/{id}', [GestionController::class, 'mostrarInvestigador'])->name('investigadores.mostrar');
+Route::post('/gestion/investigadores/actualizar-estado', [GestionController::class, 'actualizarEstadoInvestigador']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

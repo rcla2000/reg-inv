@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Investigador;
+use Exception;
 use Illuminate\Http\Request;
 
 class GestionController extends Controller
@@ -28,5 +29,20 @@ class GestionController extends Controller
         $investigador = Investigador::findOrFail($id);
 
         return view('gestion.revision', compact('investigador'));
+    }
+
+    function actualizarEstadoInvestigador(Request $request) {
+        $investigador = Investigador::find($request->idInvestigador);
+
+        if ($investigador !== null) {
+            try {
+                $investigador->id_estado = $request->idEstado;
+                $investigador->save();
+                return response()->json(['message' => 'Estado de investigador actualizado correctamente']);
+            } catch (Exception $e) {
+                return response()->json(['message' => 'Ha ocurrido un error al actualizar el estado del investigador'], 500);
+            }
+        }
+        return response()->json(['message' => 'No se encontró el registro del investigador'], 400);
     }
 }
