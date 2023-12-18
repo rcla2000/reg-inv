@@ -67,80 +67,76 @@
             <hr>
             <h2 class="mb-3">Información sobre grados académicos</h2>
             <hr>
-            @if (count($investigador->docs_grados_academicos) > 0)
-                <div class="documentos">
-                    @foreach ($investigador->docs_grados_academicos as $doc)
-                        <a href="" class="enlace-doc">
-                            <div class="doc">
-                                <div class="icono">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                </div>
-                                <span>{{ $doc->grados_academico->nombre }}</span>
+            <div class="documentos">
+                @forelse ($investigador->docs_grados_academicos as $doc)
+                    <a href="{{ route('investigadores.documento.mostrar', [
+                        'idInvestigador' => $investigador->id_investigador,
+                        'tabla' => 'ga',
+                        'idDocumento' => $doc->id_documento
+                    ]) }}" class="enlace-doc">
+                        <div class="doc">
+                            <div class="icono">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </div>
-                        </a>
-                        <p>{{ asset("storage/$doc->archivo") }}</p>
-                    @endforeach
-                </div>
-            @else
-                <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-            @endif
+                            <span>{{ $doc->grados_academico->nombre }}</span>
+                        </div>
+                    </a>
+                    @empty
+                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                    {{-- <p>{{ asset("storage/$doc->archivo") }}</p> --}}
+                @endforelse
+            </div>
             <hr>
             <h2 class="mb-3">Datos de la participación científica y tecnológica</h2>
             <hr>
-            @if (count($investigador->docs_participacion_cyts) > 0)
-                <div class="documentos">
-                    @foreach ($investigador->docs_participacion_cyts as $doc)
-                        <a href="" class="enlace-doc">
-                            <div class="doc">
-                                <div class="icono">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                </div>
-                                <span>{{ $doc->participacion_cyt->descripcion }}</span>
+            <div class="documentos">
+                @forelse ($investigador->docs_participacion_cyts as $doc)
+                    <a href="" class="enlace-doc">
+                        <div class="doc">
+                            <div class="icono">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </div>
-                        </a>
-                    @endforeach
-                </div>
-            @else
-                <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-            @endif
+                            <span>{{ $doc->participacion_cyt->descripcion }}</span>
+                        </div>
+                    </a>
+                    @empty
+                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                @endforelse
+            </div>
             <hr>
             <h2 class="mb-3">Datos del desempeño científico</h2>
             <hr>
-            @if (count($investigador->docs_desempeno_cyts) > 0)
-                <div class="documentos">
-                    @foreach ($investigador->docs_desempeno_cyts as $doc)
-                        <a href="" class="enlace-doc">
-                            <div class="doc">
-                                <div class="icono">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                </div>
-                                <span>{{ $doc->desempeno_cyt->descripcion }}</span>
+            <div class="documentos">
+                @forelse ($investigador->docs_desempeno_cyts as $doc)
+                    <a href="" class="enlace-doc">
+                        <div class="doc">
+                            <div class="icono">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </div>
-                        </a>
-                    @endforeach
-                </div>
-            @else
-                <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-            @endif
+                            <span>{{ $doc->desempeno_cyt->descripcion }}</span>
+                        </div>
+                    </a>
+                    @empty
+                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                @endforelse
+            </div>
             <hr>
             <h2 class="mb-3">Publicaciones de investigación científica y tecnológica</h2>
             <hr>
-            @if (count($investigador->docs_publicaciones_cyts) > 0)
-                <div class="documentos">
-                    @foreach ($investigador->docs_publicaciones_cyts as $doc)
-                        <a href="" class="enlace-doc">
-                            <div class="doc">
-                                <div class="icono">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                </div>
-                                <span>{{ $doc->publicaciones_cyt->descripcion }}</span>
+            <div class="documentos">
+                @forelse ($investigador->docs_publicaciones_cyts as $doc)
+                    <a href="" class="enlace-doc">
+                        <div class="doc">
+                            <div class="icono">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </div>
-                        </a>
-                    @endforeach
-                </div>
-            @else
-                <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-            @endif
+                            <span>{{ $doc->publicaciones_cyt->descripcion }}</span>
+                        </div>
+                    </a>
+                    @empty
+                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                @endforelse
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12">
