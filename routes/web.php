@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\GestionController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Investigador;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +35,13 @@ Route::get('/prueba', function () {
 // Rutas para gestionar registros de investigadores
 Route::get('/gestion/investigadores', [GestionController::class, 'listarInvestigadores'])->name('investigadores.inicio');
 Route::get('/gestion/investigadores/{id}', [GestionController::class, 'mostrarInvestigador'])->name('investigadores.mostrar');
-Route::get('/gestion/investigadores/{idInvestigador}/documentos/{tabla}/{idDocumento}', 
-[GestionController::class, 'mostrarDocumentoInvestigador'])->name('investigadores.documento.mostrar');
 Route::post('/gestion/investigadores/actualizar-estado', [GestionController::class, 'actualizarEstadoInvestigador']);
+
+// Rutas para revisión de documentación
+Route::get('/gestion/investigadores/{idInvestigador}/documentos/{tabla}/{idDocumento}', 
+[DocumentosController::class, 'mostrar'])->name('investigadores.documento.mostrar');
+Route::post('/gestion/investigadores/documentos/agregar-observacion',
+[DocumentosController::class, 'agregarObservacion'])->name('documentos.observaciones.agregar');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

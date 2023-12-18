@@ -26,12 +26,15 @@ class Observacion extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_investigador' => 'int'
+		'id_investigador' => 'int',
+		'id_documento' => 'int'
 	];
 
 	protected $fillable = [
 		'id_investigador',
-		'observacion'
+		'observacion',
+		'tabla',
+		'id_documento',
 	];
 
 	public function investigadore()
