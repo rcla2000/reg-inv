@@ -38,7 +38,7 @@ class DocsDesempenoCyt extends Model
 		'id_investigador'
 	];
 
-	public function desempeno_cyt()
+	public function tipo()
 	{
 		return $this->belongsTo(DesempenoCyt::class, 'id_tipo');
 	}

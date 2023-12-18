@@ -31,7 +31,7 @@ class GradosAcademico extends Model
 	];
 
 	protected $fillable = [
-		'nombre',
+		'descripcion',
 		'medicion',
 		'comentario_archivo'
 	];

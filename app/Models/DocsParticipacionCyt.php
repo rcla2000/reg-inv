@@ -38,7 +38,7 @@ class DocsParticipacionCyt extends Model
 		'id_investigador'
 	];
 
-	public function participacion_cyt()
+	public function tipo()
 	{
 		return $this->belongsTo(ParticipacionCyt::class, 'id_tipo');
 	}

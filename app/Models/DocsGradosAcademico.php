@@ -38,7 +38,7 @@ class DocsGradosAcademico extends Model
 		'id_investigador'
 	];
 
-	public function grados_academico()
+	public function tipo()
 	{
 		return $this->belongsTo(GradosAcademico::class, 'id_tipo');
 	}
