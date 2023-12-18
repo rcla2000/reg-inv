@@ -21,7 +21,7 @@
                 </form>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 mb-4">
             <div class="col-12">
                 <a href="{{ route('investigadores.mostrar', $investigador->id_investigador) }}"
                     class="btn btn-primary">
