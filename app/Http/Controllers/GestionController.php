@@ -7,8 +7,10 @@ use App\Models\DocsGradosAcademico;
 use App\Models\DocsParticipacionCyt;
 use App\Models\DocsPublicacionesCyt;
 use App\Models\Investigador;
+use App\Models\Observacion;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GestionController extends Controller
 {
@@ -73,5 +75,20 @@ class GestionController extends Controller
             }
         }
         return response()->json(['message' => 'No se encontró el registro del investigador'], 400);
+    }
+
+    function eliminarInvestigador(Request $request) {
+        try {
+            Observacion::where('id_investigador', $request->idInvestigador)->delete();
+            DocsGradosAcademico::where('id_investigador', $request->idInvestigador)->delete();
+            DocsDesempenoCyt::where('id_investigador', $request->idInvestigador)->delete();
+            DocsParticipacionCyt::where('id_investigador', $request->idInvestigador)->delete();
+            DocsPublicacionesCyt::where('id_investigador', $request->idInvestigador)->delete();
+            Investigador::destroy($request->idInvestigador);
+            Storage::deleteDirectory("investigadores/$request->idInvestigador");
+            return response()->json(['message' => 'El registro de investigador ha sido eliminado exitosamente']);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Ocurrió un error el intentar eliminar el registro'], 500);
+        }
     }
 }

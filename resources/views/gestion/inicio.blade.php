@@ -31,11 +31,12 @@
                                 <td>{{ $investigador->telefono }}</td>
                                 <td class="d-flex justify-content-center">
                                     <a href="{{ route('investigadores.mostrar', $investigador->id_investigador) }}"
-                                        class="btn btn-sm btn-success me-1"
-                                        data-bs-toggle="tooltip" data-bs-title="Revisar documentación de investigador">
+                                        class="btn btn-sm btn-success me-1" data-bs-toggle="tooltip"
+                                        data-bs-title="Revisar documentación de investigador">
                                         Revisión
                                     </a>
-                                    <a href="" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="Eliminar investigador">
+                                    <a onclick="eliminarInvestigador()" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                        data-bs-title="Eliminar investigador">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                 </td>
@@ -47,4 +48,8 @@
             {{ $investigadores->onEachSide(5)->links() }}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/eliminar-inv.js') }}"></script>
 @endsection

@@ -9,6 +9,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class DocumentosController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function mostrar($idInvestigador, $tabla, $idDocumento) {
         $investigador = Investigador::findOrFail($idInvestigador);
         $doc = null;

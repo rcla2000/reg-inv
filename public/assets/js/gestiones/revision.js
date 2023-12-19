@@ -29,18 +29,44 @@ const actualizaEstadoInvestigador = async (idInvestigador, idEstado) => {
 
 btnAprobar.addEventListener('click', async e => {
     e.preventDefault();
-    const res = await actualizaEstadoInvestigador(idInvestigador, 3);
-    res ?
-        Swal.fire('Información', res.message, 'success')
-        :
-        Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error')
+
+    Swal.fire({
+        title: "¿Está seguro/a que desea APROBAR al/la investigador/a?",
+        showDenyButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            const res = await actualizaEstadoInvestigador(idInvestigador, 3);
+            res ?
+                Swal.fire('Información', res.message, 'success')
+                :
+                Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
+        } else if (result.isDenied) {
+            Swal.fire("Operación cancelada", "", "info");
+        }
+    });
 });
 
 btnDenegar.addEventListener('click', async e => {
     e.preventDefault();
-    const res = await actualizaEstadoInvestigador(idInvestigador, 4);
-    res ?
-        Swal.fire('Información', res.message, 'success')
-        :
-        Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error')
+
+    Swal.fire({
+        title: "¿Está seguro/a que desea DENEGAR al/la investigador/a?",
+        showDenyButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            const res = await actualizaEstadoInvestigador(idInvestigador, 4);
+            res ?
+                Swal.fire('Información', res.message, 'success')
+                :
+                Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
+        } else if (result.isDenied) {
+            Swal.fire("Operación cancelada", "", "info");
+        }
+    });
 });
