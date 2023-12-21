@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Investigador;
 use App\Models\Observacion;
+use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class DocumentosController extends Controller
 {
@@ -51,5 +53,17 @@ class DocumentosController extends Controller
         Observacion::create($datos);
         Alert::success('Información', 'La observación sobre este documento ha sido almacenada exitosamente');
         return back();
+    }
+
+    function eliminarObservacion(Request $request) {
+        try {
+            DB::beginTransaction();
+            Observacion::destroy($request->id_observacion);
+            DB::commit();
+            return response()->json(['message' => 'La observacion ha sido eliminado exitosamente']);
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(['message' => 'Ha ocurrido un error al eliminar la observación'], 500);
+        }   
     }
 }

@@ -1,13 +1,15 @@
 const btnAprobar = document.querySelector('#aprobar-inv');
 const btnDenegar = document.querySelector('#denegar-inv');
 const idInvestigador = document.querySelector('#id-inv').value;
+const token = document.getElementsByTagName('meta')['csrf-token'].content;
+const contenedorObservaciones = document.querySelector('.observaciones');
 
-const actualizaEstadoInvestigador = async (idInvestigador, idEstado) => {
+const actualizarEstadoInvestigador = async (idInvestigador, idEstado) => {
     try {
         const peticion = await fetch('/gestion/investigadores/actualizar-estado', {
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.getElementsByTagName('meta')['csrf-token'].content 
+                'X-CSRF-TOKEN': token
             },
             method: 'POST',
             body: JSON.stringify({
@@ -30,43 +32,43 @@ const actualizaEstadoInvestigador = async (idInvestigador, idEstado) => {
 btnAprobar.addEventListener('click', async e => {
     e.preventDefault();
 
-    Swal.fire({
-        title: "¿Está seguro/a que desea APROBAR al/la investigador/a?",
-        showDenyButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No'
-    }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            const res = await actualizaEstadoInvestigador(idInvestigador, 3);
-            res ?
-                Swal.fire('Información', res.message, 'success')
-                :
-                Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
-        } else if (result.isDenied) {
-            Swal.fire("Operación cancelada", "", "info");
-        }
+    confirmacion('¿Está seguro/a que desea APROBAR al/la investigador/a?', async () => {
+        const res = await actualizarEstadoInvestigador(idInvestigador, 3);
+        res ?
+            Swal.fire('Información', res.message, 'success')
+            :
+            Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
     });
 });
 
 btnDenegar.addEventListener('click', async e => {
     e.preventDefault();
 
-    Swal.fire({
-        title: "¿Está seguro/a que desea DENEGAR al/la investigador/a?",
-        showDenyButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No'
-    }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            const res = await actualizaEstadoInvestigador(idInvestigador, 4);
+    confirmacion('¿Está seguro/a que desea DENEGAR al/la investigador/a?', async () => {
+        const res = await actualizarEstadoInvestigador(idInvestigador, 4);
             res ?
                 Swal.fire('Información', res.message, 'success')
                 :
                 Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
-        } else if (result.isDenied) {
-            Swal.fire("Operación cancelada", "", "info");
-        }
     });
 });
+
+const eliminarObservacion = idObservacion => {
+    confirmacion('¿Está seguro/a que desea eliminar esta observación?', async () => {
+        const res = await peticion(
+            route('documentos.observaciones.eliminar'), 
+            'POST',
+            token,
+            {
+                id_observacion: idObservacion
+            }
+        );
+        
+        if (res.status === 200) {
+            contenedorObservaciones.removeChild(document.getElementById(`observacion-${idObservacion}`));
+            Swal.fire('Información', res.json.message, 'success');
+        } else {
+            Swal.fire('Error', res.json.message, 'error');
+        }
+    });
+}

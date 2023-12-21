@@ -43,6 +43,8 @@ Route::get('/gestion/investigadores/{idInvestigador}/documentos/{tabla}/{idDocum
 [DocumentosController::class, 'mostrar'])->name('investigadores.documento.mostrar');
 Route::post('/gestion/investigadores/documentos/agregar-observacion',
 [DocumentosController::class, 'agregarObservacion'])->name('documentos.observaciones.agregar');
+Route::post('/gestion/investigadores/documentos/eliminar-observacion',
+[DocumentosController::class, 'eliminarObservacion'])->name('documentos.observaciones.eliminar');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

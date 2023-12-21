@@ -161,12 +161,12 @@
                             <div class="observaciones">
                                 @if (count($investigador->observaciones) > 0)
                                     @for($i = 0; $i < count($investigador->observaciones); $i++)
-                                        <div class="observacion">
+                                        <div class="observacion" id="observacion-{{ $investigador->observaciones[$i]->id_observacion }}">
                                             <span>
                                                 <b>{{ $documentos[$i]->tipo->descripcion }}:</b>
                                                 {{ $investigador->observaciones[$i]->observacion }}
                                             </span>
-                                            <i class="fa-solid fa-circle-xmark" 
+                                            <i class="fa-solid fa-circle-xmark" onclick="eliminarObservacion({{ $investigador->observaciones[$i]->id_observacion }})"
                                                 data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
                                         </div>
                                     @endfor
@@ -198,5 +198,7 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/confirmacion.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/peticiones.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/gestiones/revision.js') }}"></script>
 @endsection
