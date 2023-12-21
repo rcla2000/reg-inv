@@ -25,6 +25,7 @@
             <div class="col-12">
                 <a href="{{ route('investigadores.mostrar', $investigador->id_investigador) }}"
                     class="btn btn-primary">
+                    <i class="fa-solid fa-left-long me-1"></i>
                     Volver
                 </a>
             </div>

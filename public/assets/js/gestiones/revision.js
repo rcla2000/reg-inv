@@ -1,8 +1,8 @@
-const btnAprobar = document.querySelector('#aprobar-inv');
 const btnDenegar = document.querySelector('#denegar-inv');
 const idInvestigador = document.querySelector('#id-inv').value;
 const token = document.getElementsByTagName('meta')['csrf-token'].content;
 const contenedorObservaciones = document.querySelector('.observaciones');
+const frmAprobarInvestigador = document.querySelector('#frm-aprobar-inv');
 
 const actualizarEstadoInvestigador = async (idInvestigador, idEstado) => {
     try {
@@ -29,15 +29,11 @@ const actualizarEstadoInvestigador = async (idInvestigador, idEstado) => {
     }
 }
 
-btnAprobar.addEventListener('click', async e => {
+frmAprobarInvestigador.addEventListener('submit', async e => {
     e.preventDefault();
 
-    confirmacion('¿Está seguro/a que desea APROBAR al/la investigador/a?', async () => {
-        const res = await actualizarEstadoInvestigador(idInvestigador, 3);
-        res ?
-            Swal.fire('Información', res.message, 'success')
-            :
-            Swal.fire('Error', 'Ocurrió un error al actualizar el estado del investigador', 'error');
+    confirmacion('¿Está seguro/a que desea APROBAR al/la investigador/a?', () => {
+        frmAprobarInvestigador.submit();
     });
 });
 

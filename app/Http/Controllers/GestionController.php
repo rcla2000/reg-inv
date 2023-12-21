@@ -11,6 +11,7 @@ use App\Models\Observacion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GestionController extends Controller
 {
@@ -56,6 +57,45 @@ class GestionController extends Controller
         }
 
         return view('gestion.revision', compact('investigador', 'documentos'));
+    }
+
+    private function obtenerFechaActual() {
+        $dia = date('d');
+        $anio = date('Y');
+        $mes = date('m');
+        $meses = [
+            'enero',
+            'febrero',
+            'marzo',
+            'abril',
+            'mayo',
+            'junio',
+            'julio',
+            'agosto',
+            'septiembre',
+            'octubre',
+            'noviembre',
+            'diciembre'
+        ];
+
+        return [
+            'dia' => $dia,
+            'mes' => $meses[$mes - 1],
+            'anio' => $anio
+        ];
+    }
+
+    function emitirConstancia(Request $request) {
+        try {
+            $investigador = Investigador::findOrFail($request->id_investigador);
+            $fechaActual = $this->obtenerFechaActual();
+            $pdf = Pdf::loadView('gestion.constancia', compact('investigador', 'fechaActual'));
+            $investigador->id_estado = 3;
+            $investigador->save();
+            return $pdf->download('constancia.pdf');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     function actualizarEstadoInvestigador(Request $request) {

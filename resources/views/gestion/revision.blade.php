@@ -176,14 +176,21 @@
                             </div>
                             <hr class="mt-4">
                             <h4 class="mt-3 mb-3">Aprobar o denegar al investigador:</h4>
-                            <a href="" class="btn btn-success me-3" id="aprobar-inv">
-                                <i class="fa-solid fa-square-check me-1"></i>
-                                Aprobar
-                            </a>
-                            <a href="" class="btn btn-danger me-3" id="denegar-inv">
-                                <i class="fa-solid fa-xmark me-1"></i>
-                                Denegar
-                            </a>
+                            <div class="d-flex">
+                                <form method="POST" action="{{ route('investigador.generar.constancia') }}"
+                                    id="frm-aprobar-inv">
+                                    @csrf
+                                    <input type="hidden" name="id_investigador" value="{{ $investigador->id_investigador }}">
+                                    <button type="submit" class="btn btn-success me-3">
+                                        <i class="fa-solid fa-square-check me-1"></i>
+                                        Aprobar
+                                    </button>
+                                </form>
+                                <a href="" class="btn btn-danger me-3" id="denegar-inv">
+                                    <i class="fa-solid fa-xmark me-1"></i>
+                                    Denegar
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,7 +198,10 @@
         </div>
         <div class="row mt-3 mb-3">
             <div class="col-12">
-                <a href="{{ route('investigadores.inicio') }}" class="btn btn-primary">Volver al listado</a>
+                <a href="{{ route('investigadores.inicio') }}" class="btn btn-primary">
+                    <i class="fa-solid fa-left-long me-1"></i>
+                    Volver al listado
+                </a>
             </div>
         </div>
     </div>

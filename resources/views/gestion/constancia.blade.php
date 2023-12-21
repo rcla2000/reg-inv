@@ -11,7 +11,7 @@
 <style>
     @font-face {
         font-family: 'bembo';
-        src: url({{ storage_path('fonts\BemboStd.otf') }}) format("truetype");
+        src: url({{ storage_path('fonts\bembo-std.otf') }}) format("truetype");
         font-weight: 400;
         font-style: normal;
     }
@@ -199,10 +199,10 @@
             medio hace constar que</p>
         <div>
             <span class="nombre">
-                Evelyn Haydeé García Rivas de Medina
+                {{ $investigador->primer_nombre . ' ' . $investigador->segundo_nombre . ' ' . $investigador->primer_apellido . ' ' . $investigador->segundo_apellido }}
             </span>
             <p class="mt-2">
-                Con el código de identificación número <u>1412-190723</u>,
+                Con el código de identificación número <u>{{ $investigador->dui }}</u>,
                 forma parte de la Red de Investigadores en Ciencia y
                 Tecnología de El Salvador, activo en la base de datos
                 REDISAL.
@@ -212,14 +212,14 @@
                 Constancia; válida por un año.
             </p>
             <p class="mt-5">
-                Dado en la Ciudad de San Salvador, a los 19 días, del mes julio de 2023.
+                Dado en la Ciudad de San Salvador, a los {{ $fechaActual['dia'] }} días, del mes de {{ $fechaActual['mes'] }} de {{ $fechaActual['anio'] }}.
             </p>
         </div>
         <div class="seccion-firma">
             <div class="contenedor-autentica">
-                <img src="{{ public_path('assets/img/constancia/firma.png') }}" alt="Firma Directora Ejecutiva"
+                <img src="{{ storage_path('constancia\firma.png') }}" alt="Firma Directora Ejecutiva"
                     title="Firma Directora Ejecutiva" class="firma">
-                <img src="{{ public_path('assets/img/constancia/sello.png') }}" alt="Sello CONACYT"
+                <img src="{{ storage_path('constancia\sello.png') }}" alt="Sello CONACYT"
                     title="Sello CONACYT" class="sello">
             </div>
             <div class="nombre">
