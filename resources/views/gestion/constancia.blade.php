@@ -9,6 +9,13 @@
 </head>
 
 <style>
+    @font-face {
+        font-family: 'bembo';
+        src: url({{ storage_path('fonts\BemboStd.otf') }}) format("truetype");
+        font-weight: 400;
+        font-style: normal;
+    }
+
     .contenedor-constancia {
         padding: 0 2.5rem;
     }
@@ -16,16 +23,19 @@
     p,
     span {
         font-size: 1.6rem;
+        font-family: 'bembo' !important;
     }
 
     .constancia {
         font-size: 1.4rem;
-        font-weight: 600
+        font-weight: 600;
+        font-family: 'bembo' !important;
     }
 
     span.nombre {
         font-weight: 700;
         font-size: 2rem;
+        font-family: 'bembo' !important;
     }
 
     .seccion-firma {

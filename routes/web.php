@@ -27,8 +27,9 @@ Route::view('/pdf', 'gestion.visor-pdf');
 Route::view('/constancia', 'gestion.constancia');
 
 Route::get('/prueba', function () {
-    // $pdf = PDF::loadView('gestion.constancia');
-    // return $pdf->download('constancia.pdf');
+    $pdf = PDF::loadView('gestion.constancia');
+    return $pdf->download('constancia.pdf');
+   // echo storage_path('fonts\BemboStd.otf');
   
 });
 
