@@ -64,133 +64,144 @@
             </div>
         </div>
         <div class="row mt-4">
-            <hr>
-            <h2 class="mb-3">Información sobre grados académicos</h2>
-            <hr>
-            <div class="documentos">
-                @forelse ($investigador->docs_grados_academicos as $doc)
-                    <a href="{{ route('investigadores.documento.mostrar', [
-                        'idInvestigador' => $investigador->id_investigador,
-                        'tabla' => 'ga',
-                        'idDocumento' => $doc->id_documento
-                    ]) }}" class="enlace-doc">
-                        <div class="doc">
-                            <div class="icono">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
-                            <span>{{ $doc->tipo->descripcion }}</span>
-                        </div>
-                    </a>
-                    @empty
-                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-                @endforelse
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">Información sobre grados académicos</h2>
+                    <hr>
+                    <div class="documentos">
+                        @forelse ($investigador->docs_grados_academicos as $doc)
+                            <a href="{{ route('investigadores.documento.mostrar', [
+                                'idInvestigador' => $investigador->id_investigador,
+                                'tabla' => 'ga',
+                                'idDocumento' => $doc->id_documento
+                            ]) }}" class="enlace-doc">
+                                <div class="doc">
+                                    <div class="icono">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </div>
+                                    <span>{{ $doc->tipo->descripcion }}</span>
+                                </div>
+                            </a>
+                            @empty
+                            <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                        @endforelse
+                    </div>
+                </div>
             </div>
-            <hr>
-            <h2 class="mb-3">Datos de la participación científica y tecnológica</h2>
-            <hr>
-            <div class="documentos">
-                @forelse ($investigador->docs_participacion_cyts as $doc)
-                    <a href="{{ route('investigadores.documento.mostrar', [
-                        'idInvestigador' => $investigador->id_investigador,
-                        'tabla' => 'par',
-                        'idDocumento' => $doc->id_documento
-                    ]) }}" class="enlace-doc">
-                        <div class="doc">
-                            <div class="icono">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
-                            <span>{{ $doc->tipo->descripcion }}</span>
-                        </div>
-                    </a>
-                    @empty
-                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-                @endforelse
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">Datos de la participación científica y tecnológica</h2>
+                    <hr>
+                    <div class="documentos">
+                        @forelse ($investigador->docs_participacion_cyts as $doc)
+                            <a href="{{ route('investigadores.documento.mostrar', [
+                                'idInvestigador' => $investigador->id_investigador,
+                                'tabla' => 'par',
+                                'idDocumento' => $doc->id_documento
+                            ]) }}" class="enlace-doc">
+                                <div class="doc">
+                                    <div class="icono">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </div>
+                                    <span>{{ $doc->tipo->descripcion }}</span>
+                                </div>
+                            </a>
+                            @empty
+                            <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                        @endforelse
+                    </div>
+                </div>
             </div>
-            <hr>
-            <h2 class="mb-3">Datos del desempeño científico</h2>
-            <hr>
-            <div class="documentos">
-                @forelse ($investigador->docs_desempeno_cyts as $doc)
-                    <a href="{{ route('investigadores.documento.mostrar', [
-                        'idInvestigador' => $investigador->id_investigador,
-                        'tabla' => 'des',
-                        'idDocumento' => $doc->id_documento
-                    ]) }}" class="enlace-doc">
-                        <div class="doc">
-                            <div class="icono">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
-                            <span>{{ $doc->tipo->descripcion }}</span>
-                        </div>
-                    </a>
-                    @empty
-                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-                @endforelse
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">Datos del desempeño científico</h2>
+                    <hr>
+                    <div class="documentos">
+                        @forelse ($investigador->docs_desempeno_cyts as $doc)
+                            <a href="{{ route('investigadores.documento.mostrar', [
+                                'idInvestigador' => $investigador->id_investigador,
+                                'tabla' => 'des',
+                                'idDocumento' => $doc->id_documento
+                            ]) }}" class="enlace-doc">
+                                <div class="doc">
+                                    <div class="icono">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </div>
+                                    <span>{{ $doc->tipo->descripcion }}</span>
+                                </div>
+                            </a>
+                            @empty
+                            <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                        @endforelse
+                    </div>
+                </div>
             </div>
-            <hr>
-            <h2 class="mb-3">Publicaciones de investigación científica y tecnológica</h2>
-            <hr>
-            <div class="documentos">
-                @forelse ($investigador->docs_publicaciones_cyts as $doc)
-                    <a href="{{ route('investigadores.documento.mostrar', [
-                        'idInvestigador' => $investigador->id_investigador,
-                        'tabla' => 'pub',
-                        'idDocumento' => $doc->id_documento
-                    ]) }}" class="enlace-doc">
-                        <div class="doc">
-                            <div class="icono">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
-                            <span>{{ $doc->tipo->descripcion }}</span>
-                        </div>
-                    </a>
-                    @empty
-                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-                @endforelse
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">Publicaciones de investigación científica y tecnológica</h2>
+                    <hr>
+                    <div class="documentos">
+                        @forelse ($investigador->docs_publicaciones_cyts as $doc)
+                            <a href="{{ route('investigadores.documento.mostrar', [
+                                'idInvestigador' => $investigador->id_investigador,
+                                'tabla' => 'pub',
+                                'idDocumento' => $doc->id_documento
+                            ]) }}" class="enlace-doc">
+                                <div class="doc">
+                                    <div class="icono">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </div>
+                                    <span>{{ $doc->tipo->descripcion }}</span>
+                                </div>
+                            </a>
+                            @empty
+                            <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                        @endforelse
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title mb-3">Acciones</h3>
-                        <hr>
-                        <div class="p-3">
-                            <input type="hidden" value="{{ $investigador->id_investigador }}" id="id-inv">
-                            <h4 class="mb-3">Observaciones:</h4>
-                            <div class="observaciones">
-                                @if (count($investigador->observaciones) > 0)
-                                    @for($i = 0; $i < count($investigador->observaciones); $i++)
-                                        <div class="observacion" id="observacion-{{ $investigador->observaciones[$i]->id_observacion }}">
-                                            <span>
-                                                <b>{{ $documentos[$i]->tipo->descripcion }}:</b>
-                                                {{ $investigador->observaciones[$i]->observacion }}
-                                            </span>
-                                            <i class="fa-solid fa-circle-xmark" onclick="eliminarObservacion({{ $investigador->observaciones[$i]->id_observacion }})"
-                                                data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
-                                        </div>
-                                    @endfor
-                                @else
-                                    <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
-                                @endif   
-                            </div>
-                            <hr class="mt-4">
-                            <h4 class="mt-3 mb-3">Aprobar o denegar al investigador:</h4>
-                            <div class="d-flex">
-                                <form method="POST" action="{{ route('investigador.generar.constancia') }}"
-                                    id="frm-aprobar-inv">
-                                    @csrf
-                                    <input type="hidden" name="id_investigador" value="{{ $investigador->id_investigador }}">
-                                    <button type="submit" class="btn btn-success me-3">
-                                        <i class="fa-solid fa-square-check me-1"></i>
-                                        Aprobar
-                                    </button>
-                                </form>
-                                <a href="" class="btn btn-danger me-3" id="denegar-inv">
-                                    <i class="fa-solid fa-xmark me-1"></i>
-                                    Denegar
-                                </a>
-                            </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">Acciones</h3>
+                    <hr>
+                    <div class="p-3">
+                        <input type="hidden" value="{{ $investigador->id_investigador }}" id="id-inv">
+                        <h4 class="mb-3">Observaciones:</h4>
+                        <div class="observaciones">
+                            @if (count($investigador->observaciones) > 0)
+                                @for($i = 0; $i < count($investigador->observaciones); $i++)
+                                    <div class="observacion" id="observacion-{{ $investigador->observaciones[$i]->id_observacion }}">
+                                        <span>
+                                            <b>{{ $documentos[$i]->tipo->descripcion }}:</b>
+                                            {{ $investigador->observaciones[$i]->observacion }}
+                                        </span>
+                                        <i class="fa-solid fa-circle-xmark" onclick="eliminarObservacion({{ $investigador->observaciones[$i]->id_observacion }})"
+                                            data-bs-toggle="tooltip" data-bs-title="Eliminar observación"></i>
+                                    </div>
+                                @endfor
+                            @else
+                                <span class="p-4 text-center text-danger"><b>NO POSEE</b></span>
+                            @endif   
+                        </div>
+                        <hr class="mt-4">
+                        <h4 class="mt-3 mb-3">Aprobar o denegar al investigador:</h4>
+                        <div class="d-flex">
+                            <form method="POST" action="{{ route('investigador.generar.constancia') }}"
+                                id="frm-aprobar-inv">
+                                @csrf
+                                <input type="hidden" name="id_investigador" value="{{ $investigador->id_investigador }}">
+                                <button type="submit" class="btn btn-success me-3">
+                                    <i class="fa-solid fa-square-check me-1"></i>
+                                    Aprobar
+                                </button>
+                            </form>
+                            <a href="" class="btn btn-danger me-3" id="denegar-inv">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                Denegar
+                            </a>
                         </div>
                     </div>
                 </div>
