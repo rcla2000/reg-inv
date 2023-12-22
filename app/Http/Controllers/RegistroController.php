@@ -137,7 +137,7 @@ class RegistroController extends Controller
 
     function guardarInvestigador(Request $request) {
         $request->validate([
-            'dui' => 'required|string|regex:/^[0-9]{8}-[0-9]$/',
+            'dui' => 'required|string|regex:/^[0-9]{8}-[0-9]$/|unique:investigadores',
             'primer_nombre' => 'required|string',
             'segundo_nombre' => 'required|string',
             'primer_apellido' => 'required|string',
@@ -145,8 +145,8 @@ class RegistroController extends Controller
             'departamento' => 'required',
             'municipio' => 'required',
             'direccion' => 'required|string',
-            'telefono' => 'required|string|regex:/^[267][0-9]{3}-[0-9]{4}$/',
-            'email' => 'required|email',
+            'telefono' => 'required|string|regex:/^[267][0-9]{3}-[0-9]{4}$/|unique:investigadores',
+            'email' => 'required|email|unique:investigadores',
             'email_confirmacion' => 'required|email',
             'puntaje' => 'required'
         ]);

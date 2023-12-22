@@ -2,8 +2,6 @@
 
 @section('titulo', 'Registro')
 
-
-
 @section('contenido')
     <div class="contenedor">
         <form action="{{ route('registro.guardar') }}" method="POST" enctype="multipart/form-data" id="frm-investigador"
