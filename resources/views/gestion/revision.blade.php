@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="card mt-4 mb-4">
+            <div class="card my-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Información sobre grados académicos</h2>
                     <hr>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 mb-4">
+            <div class="card my-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Datos de la participación científica y tecnológica</h2>
                     <hr>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 mb-4">
+            <div class="card my-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Datos del desempeño científico</h2>
                     <hr>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 mb-4">
+            <div class="card my-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Publicaciones de investigación científica y tecnológica</h2>
                     <hr>
@@ -162,7 +162,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center my-4">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title mb-3">Acciones</h3>
@@ -202,17 +202,13 @@
                                 <i class="fa-solid fa-xmark me-1"></i>
                                 Denegar
                             </a>
+                            <a href="{{ route('investigadores.inicio') }}" class="btn btn-primary">
+                                <i class="fa-solid fa-left-long me-1"></i>
+                                Volver al listado
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-3 mb-3">
-            <div class="col-12">
-                <a href="{{ route('investigadores.inicio') }}" class="btn btn-primary">
-                    <i class="fa-solid fa-left-long me-1"></i>
-                    Volver al listado
-                </a>
             </div>
         </div>
     </div>

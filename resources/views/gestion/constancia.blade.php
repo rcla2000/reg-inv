@@ -196,23 +196,24 @@
             <span class="constancia p-absolute r-0 mr-1-5">CONSTANCIA</span>
         </div>
         <p>El Consejo Nacional de Ciencia y Tecnología, por este
-            medio hace constar que</p>
+            medio hace constar que:</p>
         <div>
             <span class="nombre">
                 {{ $investigador->primer_nombre . ' ' . $investigador->segundo_nombre . ' ' . $investigador->primer_apellido . ' ' . $investigador->segundo_apellido }}
             </span>
             <p class="mt-2">
-                Con el código de identificación número <u>{{ $investigador->dui }}</u>,
-                forma parte de la Red de Investigadores en Ciencia y
-                Tecnología de El Salvador, activo en la base de datos
-                REDISAL.
+                Con número de DUI <u>{{ $investigador->dui }}</u>,
+                ha obtenido la categoría de: <b>{{ $investigador->categoria->categoria }}</b> lo cual
+                le acredita como <b>activo</b> en la base de datos del Registro de Investigadores en Ciencia y Tecnología
+                de El Salvador.
             </p>
             <p>
                 Y a solicitud del investigador, se extiende esta
                 Constancia; válida por un año.
             </p>
-            <p class="mt-5">
-                Dado en la Ciudad de San Salvador, a los {{ $fechaActual['dia'] }} días, del mes de {{ $fechaActual['mes'] }} de {{ $fechaActual['anio'] }}.
+            <p class="mt-4">
+                Emitida en la Ciudad de San Salvador, a los {{ $fechaActual['dia'] }} días, del mes de {{ $fechaActual['mes'] }} de {{ $fechaActual['anio'] }}.
+                Válida hasta {{ date('d/m/') . $fechaActual['anio'] + 1 }} 
             </p>
         </div>
         <div class="seccion-firma">
