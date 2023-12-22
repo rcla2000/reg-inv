@@ -225,4 +225,25 @@ class RegistroController extends Controller
             return back();
         }
     }
+
+    function existeRegistro(Request $request) {
+        $registro = null;
+
+        switch ($request->tipo) {
+            case 'dui':
+                $registro = Investigador::where('dui', $request->valor)->first();
+            break;
+            case 'telefono':
+                $registro = Investigador::where('telefono', $request->valor)->first();
+            break;
+            case 'email':
+                $registro = Investigador::where('email', $request->valor)->first();
+            break;
+        }
+
+        if ($registro !== null) {
+            return response()->json(['valor' => true]);
+        }
+        return response()->json(['valor' => false]);
+    }
 }

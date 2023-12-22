@@ -157,7 +157,7 @@
                                 <input class="form-check-input chk-seccion" type="checkbox"
                                     data-mostrar="seccion_{{ $g->id_grado }}" id="grado_ac_{{ $g->id_grado }}">
                                 <label class="form-check-label" for="grado_ac_{{ $g->id_grado }}">
-                                    {{ $g->nombre }}
+                                    {{ $g->descripcion }}
                                 </label>
                             </div>
                         @endforeach
@@ -506,5 +506,6 @@
 @section('scripts')
     <script src="https://unpkg.com/imask"></script>
     <script type="text/javascript" src="{{ asset('assets/js/validaciones.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/peticiones.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
 @endsection

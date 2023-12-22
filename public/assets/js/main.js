@@ -15,6 +15,7 @@ const telefono = document.querySelector('#telefono');
 const email = document.querySelector('#email');
 const emailConfirmacion = document.querySelector('#email-confirmacion');
 const chksSecciones = document.querySelectorAll('.chk-seccion');
+const token = document.getElementsByTagName('meta')['csrf-token'].content;
 
 const formatoTelefono = {
     mask: '0000-0000'
@@ -107,6 +108,21 @@ const obtenerCalificacionesMaximasEstablecidas = async () => {
     } catch (error) {
         console.error(error);
         return false;
+    }
+}
+
+const existeRegistro = async (tipo, valor, campoAValidar, mensaje) => {
+    const res = await peticion(route('registro.existe'), 'POST', token, {tipo: tipo, valor: valor});
+    if (res.status === 200) {
+        if (res.json.valor) {
+            agregarError(
+                campoAValidar,
+                campoAValidar.nextElementSibling,
+                mensaje
+            );
+        } else {
+            limpiarError(campoAValidar, campoAValidar.nextElementSibling);
+        }
     }
 }
 
@@ -262,7 +278,12 @@ validar(
 
 
 // Validando que los correos ingresados sean iguales
-btnsSiguiente[0].addEventListener('click', () => {
+btnsSiguiente[0].addEventListener('click', async e => {
+    e.preventDefault();
+    await existeRegistro('dui', dui.value, dui, 'Este DUI ya se encuentra registrado');
+    await existeRegistro('telefono', telefono.value, telefono, 'Este número de teléfono ya se encuentra registrado');
+    await existeRegistro('email', email.value, email, 'Este email ya se encuentra registrado');
+
     if (email.value != emailConfirmacion.value) {
         agregarError(
             emailConfirmacion, 
@@ -272,10 +293,19 @@ btnsSiguiente[0].addEventListener('click', () => {
     } else {
         limpiarError(emailConfirmacion, emailConfirmacion.nextElementSibling);
     }
+
+    if (totalErrores() == 0) {
+        // Se realiza la animación para mostrar la siguiente sección del formulario
+        contenedorTabs.style.transform = `translateX(-${((i+1) * (100 / contenedorTabs.childElementCount)).toFixed(2) }%)`; 
+        // Llevando scroll hasta arriba de la página
+        window.scrollTo(0, 0);
+    } else {
+        Swal.fire('Error', 'Complete correctamente toda la información requerida', 'error');
+    }
 });
 
 // Funcionalidad de los botones de atrás y siguiente de las secciones del formulario
-for (let i = 0; i < btnsSiguiente.length; i++) {
+for (let i = 1; i < btnsSiguiente.length; i++) {
     btnsSiguiente[i].addEventListener('click', e => {
         e.preventDefault();
         // Función para validar tipo y tamaño de los archivos de los inputs files

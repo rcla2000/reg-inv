@@ -17,14 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rutas para dar de alta a investigadores
 Route::view('/', 'bienvenida')->name('bienvenida');
 Route::get('/registro', [RegistroController::class, 'inicio'])->name('registro.inicio');
 Route::post('/registro', [RegistroController::class, 'guardarInvestigador'])->name('registro.guardar');
 Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacionesMaximasEstablecidas']);
 Route::get('/municipios/{id}', [RegistroController::class, 'listarMunicipios']);
-
-Route::view('/pdf', 'gestion.visor-pdf');
-Route::view('/constancia', 'gestion.constancia');
+Route::post('/registro/verificar-existencia-de-registro', [RegistroController::class, 'existeRegistro'])->name('registro.existe');
 
 Route::get('/prueba', function () {
     $pdf = PDF::loadView('gestion.constancia');
@@ -33,7 +32,7 @@ Route::get('/prueba', function () {
   
 });
 
-// Rutas para gestionar registros de investigadores
+// Rutas para gestionar registros almacenados de investigadores
 Route::get('/gestion/investigadores', [GestionController::class, 'listarInvestigadores'])->name('investigadores.inicio');
 Route::get('/gestion/investigadores/{id}', [GestionController::class, 'mostrarInvestigador'])->name('investigadores.mostrar');
 Route::post('/gestion/investigadores/actualizar-estado', [GestionController::class, 'actualizarEstadoInvestigador']);
