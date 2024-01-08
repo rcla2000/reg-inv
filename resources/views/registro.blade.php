@@ -163,8 +163,8 @@
                     @foreach ($gradosAcademicos as $g)
                         <div class="row mt-3 oculto" id="seccion_{{ $g->id_grado }}">
                             <hr>
-                            <h3>Información de {{ $g->nombre }}s</h3>
-                            <h6>Títulos {{ $g->nombre }}s: *</h6>
+                            <h3>Información de {{ $g->descripcion }}s</h3>
+                            <h6>Títulos {{ $g->descripcion }}s: *</h6>
                             <div class="col-12 mt-2">
                                 <label class="btn btn-secondary"
                                     for="archivos_ga_{{ $g->id_grado }}">
