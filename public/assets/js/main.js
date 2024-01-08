@@ -296,7 +296,7 @@ btnsSiguiente[0].addEventListener('click', async e => {
 
     if (totalErrores() == 0) {
         // Se realiza la animación para mostrar la siguiente sección del formulario
-        contenedorTabs.style.transform = `translateX(-${((i+1) * (100 / contenedorTabs.childElementCount)).toFixed(2) }%)`; 
+        contenedorTabs.style.transform = `translateX(-${(100 / contenedorTabs.childElementCount).toFixed(2) }%)`; 
         // Llevando scroll hasta arriba de la página
         window.scrollTo(0, 0);
     } else {
