@@ -32,8 +32,9 @@ class RegistroController extends Controller
         $desempeno2 = DesempenoCyt::where('padre', 2)->get();
         $desempeno3 = DesempenoCyt::where('padre', 3)->get();
         $publicaciones = PublicacionesCyt::where('id_publicacion', '>', 0)->get();
+        $bdd = env('DB_DATABASE');
         $nTramite = DB::select("SELECT `AUTO_INCREMENT` as tramite FROM INFORMATION_SCHEMA.TABLES
-                                WHERE TABLE_SCHEMA = 'investigadores_cyt'
+                                WHERE TABLE_SCHEMA = '$bdd'
                                 AND TABLE_NAME = 'investigadores';")[0]->tramite + 1;
 
         return view(
