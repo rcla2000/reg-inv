@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'bienvenida')->name('bienvenida');
 Route::get('/registro', [RegistroController::class, 'inicio'])->name('registro.inicio');
 Route::post('/registro', [RegistroController::class, 'guardarInvestigador'])->name('registro.guardar');
-Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacionesMaximasEstablecidas']);
-Route::get('/municipios/{id}', [RegistroController::class, 'listarMunicipios']);
+Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacionesMaximasEstablecidas'])->name('calificaciones-maximas');
+Route::get('/municipios/{id}', [RegistroController::class, 'listarMunicipios'])->name('municipios.listar');
 Route::post('/registro/verificar-existencia-de-registro', [RegistroController::class, 'existeRegistro'])->name('registro.existe');
 
 Route::get('/prueba', function () {

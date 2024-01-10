@@ -26,7 +26,7 @@ const formatoDui = {
 
 const obtenerMunicipios = async idDepartamento => {
     try {
-        const peticion = await fetch(`/municipios/${idDepartamento}`);
+        const peticion = await fetch(route('municipios.listar', idDepartamento));
         const data = peticion.json();
         return data;
     } catch (error) {
@@ -102,7 +102,7 @@ const establecerNota = (nota, mayorNota) => {
 
 const obtenerCalificacionesMaximasEstablecidas = async () => {
     try {
-        const peticion = await fetch(`/calificaciones-maximas`);
+        const peticion = await fetch(route('calificaciones-maximas'));
         const data = peticion.json();
         return data;
     } catch (error) {
