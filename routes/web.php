@@ -35,7 +35,7 @@ Route::get('/prueba', function () {
 // Rutas para gestionar registros almacenados de investigadores
 Route::get('/gestion/investigadores', [GestionController::class, 'listarInvestigadores'])->name('investigadores.inicio');
 Route::get('/gestion/investigadores/{id}', [GestionController::class, 'mostrarInvestigador'])->name('investigadores.mostrar');
-Route::post('/gestion/investigadores/actualizar-estado', [GestionController::class, 'actualizarEstadoInvestigador']);
+Route::post('/gestion/investigadores/actualizar-estado', [GestionController::class, 'actualizarEstadoInvestigador'])->name('investigador.estado.actualizar');
 Route::post('/gestion/investigadores/eliminar', [GestionController::class, 'eliminarInvestigador'])->name('investigadores.eliminar');
 Route::post('/gestion/investigadores/emitir-constancia', [GestionController::class, 'emitirConstancia'])->name('investigador.generar.constancia');
 

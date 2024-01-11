@@ -1,6 +1,6 @@
 const eliminarInvestigador = idInvestigador => {
     confirmacion('¿Está seguro/a que desea eliminar este investigador/a?', async () => {
-        const peticion = await fetch('/gestion/investigadores/eliminar', {
+        const peticion = await fetch(route('investigadores.eliminar'), {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.getElementsByTagName('meta')['csrf-token'].content 

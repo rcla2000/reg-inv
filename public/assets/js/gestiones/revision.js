@@ -6,7 +6,7 @@ const frmAprobarInvestigador = document.querySelector('#frm-aprobar-inv');
 
 const actualizarEstadoInvestigador = async (idInvestigador, idEstado) => {
     try {
-        const peticion = await fetch('/gestion/investigadores/actualizar-estado', {
+        const peticion = await fetch(route('investigador.estado.actualizar'), {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': token
