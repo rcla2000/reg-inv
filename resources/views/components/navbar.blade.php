@@ -17,13 +17,15 @@
                         Revisión
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active text-white"
-                        href="{{ route('register') }}">
-                        <i class="fa-solid fa-user me-1"></i>
-                        Agregar usuario
-                    </a>
-                </li>
+                @if(Auth::user()->user_type == 1)
+                    <li class="nav-item">
+                        <a class="nav-link active text-white"
+                            href="{{ route('register') }}">
+                            <i class="fa-solid fa-user me-1"></i>
+                            Agregar usuario
+                        </a>
+                    </li>
+                @endif
             </ul>
             <span class="navbar-text">
                 <div class="dropdown">

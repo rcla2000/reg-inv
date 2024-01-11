@@ -1,5 +1,5 @@
-const eliminarInvestigador = idInvestigador => {
-    confirmacion('¿Está seguro/a que desea eliminar este investigador/a?', async () => {
+const eliminarInvestigador = (boton, idInvestigador) => {
+    confirmacion('¿Está seguro/a que desea eliminar el registro de el/la investigador/a?', async () => {
         const peticion = await fetch(route('investigadores.eliminar'), {
             headers: {
                 'Content-Type': 'application/json',
@@ -10,12 +10,16 @@ const eliminarInvestigador = idInvestigador => {
                 idInvestigador: idInvestigador,
             })
         });
-    
+
+        const json = await peticion.json();
+
         if (peticion.status === 200) {
-            const json = await peticion.json();
+            // Se obtiene la fila del registro que se eliminó de la base de datos y se elimina del html
+            const filaRegistro = boton.closest('tr');
+            filaRegistro.remove();
             Swal.fire("Información", json.message, "success");
         } else {
-            Swal.fire('Error', 'No se pudo eliminar el registro de investigador', 'error');
+            Swal.fire('Error', json.message, 'error');
         }
     });
 }

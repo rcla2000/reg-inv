@@ -35,10 +35,13 @@
                                         data-bs-title="Revisar documentación de investigador">
                                         Revisión
                                     </a>
-                                    <a onclick="eliminarInvestigador()" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                        data-bs-title="Eliminar investigador">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </a>
+                                    @if(Auth::user()->user_type == 1)
+                                        <a onclick="eliminarInvestigador(this, {{ $investigador->id_investigador }})" 
+                                            class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                            data-bs-title="Eliminar investigador">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
