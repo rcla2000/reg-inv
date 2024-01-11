@@ -58,17 +58,14 @@ class UsuariosController extends Controller
         $usuario = User::find($request->id_usuario);
 
         if ($usuario === null) {
-            Alert::error('Error', 'No se encontró el usuario especificado');
-            return back();
+            return response()->json(['message' => 'No se encontró el usuario especificado'], 404);
         }
 
         try {
             User::destroy($request->id_usuario);
-            Alert::success('Información', 'El registro del usuario ha sido eliminado exitosamente');
+            return response()->json(['message' => 'El registro del usuario ha sido eliminado exitosamente']);
         } catch(Exception) {
-            Alert::error('Error', 'No se pudo eliminar el usuario');
-        } finally {
-            return back();
-        }
+            return response()->json(['Error', 'No se pudo eliminar el usuario'], 500);
+        } 
     }
 }

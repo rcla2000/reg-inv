@@ -44,7 +44,8 @@
                                         Reestablecer contraseña
                                     </a>
                                     <a class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                        data-bs-title="Eliminar usuario del sistema">
+                                        data-bs-title="Eliminar usuario del sistema"
+                                        onclick="eliminarUsuario(this, {{ $usuario->id }})">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                 </td>
@@ -60,4 +61,5 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('assets/js/gestiones/confirmacion.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/gestiones/eliminar-usuario.js') }}"></script>
 @endsection
