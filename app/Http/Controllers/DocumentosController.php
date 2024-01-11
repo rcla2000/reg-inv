@@ -50,9 +50,29 @@ class DocumentosController extends Controller
             'id_investigador' => 'required'
         ]);
 
-        Observacion::create($datos);
-        Alert::success('Información', 'La observación sobre este documento ha sido almacenada exitosamente');
-        return back();
+        try {
+            DB::beginTransaction();
+
+            Observacion::create($datos);
+            $investigador = Investigador::find($request->id_investigador);
+
+            if ($investigador === null) {
+                Alert::error('Error', 'No se encontró el investigador asociado a este documento');
+                return back();
+            }
+
+            $investigador->id_estado = 2;
+            $investigador->save();
+
+            DB::commit();
+
+            Alert::success('Información', 'La observación sobre este documento ha sido almacenada exitosamente');
+        } catch (Exception) {
+            DB::rollBack();
+            Alert::error('Error', 'No se pudo agregar la observación al documento');
+        } finally {
+            return back();
+        }
     }
 
     function eliminarObservacion(Request $request) {

@@ -25,13 +25,6 @@ Route::get('/calificaciones-maximas', [RegistroController::class, 'calificacione
 Route::get('/municipios/{id}', [RegistroController::class, 'listarMunicipios'])->name('municipios.listar');
 Route::post('/registro/verificar-existencia-de-registro', [RegistroController::class, 'existeRegistro'])->name('registro.existe');
 
-Route::get('/prueba', function () {
-    $pdf = PDF::loadView('gestion.constancia');
-    return $pdf->download('constancia.pdf');
-   // echo storage_path('fonts\BemboStd.otf');
-  
-});
-
 // Rutas para gestionar registros almacenados de investigadores
 Route::get('/gestion/investigadores', [GestionController::class, 'listarInvestigadores'])->name('investigadores.inicio');
 Route::get('/gestion/investigadores/{id}', [GestionController::class, 'mostrarInvestigador'])->name('investigadores.mostrar');
