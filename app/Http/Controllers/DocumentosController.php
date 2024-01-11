@@ -60,8 +60,8 @@ class DocumentosController extends Controller
             DB::beginTransaction();
             Observacion::destroy($request->id_observacion);
             DB::commit();
-            return response()->json(['message' => 'La observacion ha sido eliminado exitosamente']);
-        } catch (Exception $e) {
+            return response()->json(['message' => 'La observación ha sido eliminada exitosamente']);
+        } catch (Exception) {
             DB::rollback();
             return response()->json(['message' => 'Ha ocurrido un error al eliminar la observación'], 500);
         }   

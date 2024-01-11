@@ -12,6 +12,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class GestionController extends Controller
 {
@@ -93,8 +95,9 @@ class GestionController extends Controller
             $investigador->id_estado = 3;
             $investigador->save();
             return $pdf->download('constancia.pdf');
-        } catch (Exception $e) {
-            return $e->getMessage();
+        } catch (Exception) {
+            Alert::error('Error', 'No se pudo emitir la constancia');
+            return back();
         }
     }
 
@@ -110,7 +113,7 @@ class GestionController extends Controller
                         'message' => $request->idEstado == 3 ? 'Investigador aprobado exitosamente' : 'El investigador ha sido denegado'
                     ]
                 );
-            } catch (Exception $e) {
+            } catch (Exception) {
                 return response()->json(['message' => 'Ha ocurrido un error al actualizar el estado del investigador'], 500);
             }
         }
@@ -119,6 +122,7 @@ class GestionController extends Controller
 
     function eliminarInvestigador(Request $request) {
         try {
+            DB::beginTransaction();
             Observacion::where('id_investigador', $request->idInvestigador)->delete();
             DocsGradosAcademico::where('id_investigador', $request->idInvestigador)->delete();
             DocsDesempenoCyt::where('id_investigador', $request->idInvestigador)->delete();
@@ -126,8 +130,10 @@ class GestionController extends Controller
             DocsPublicacionesCyt::where('id_investigador', $request->idInvestigador)->delete();
             Investigador::destroy($request->idInvestigador);
             Storage::deleteDirectory("investigadores/$request->idInvestigador");
+            DB::commit();
             return response()->json(['message' => 'El registro de investigador ha sido eliminado exitosamente']);
-        } catch (Exception $e) {
+        } catch (Exception) {
+            DB::rollBack();
             return response()->json(['message' => 'Ocurrió un error el intentar eliminar el registro'], 500);
         }
     }

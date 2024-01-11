@@ -219,9 +219,9 @@ class RegistroController extends Controller
            
             DB::commit();
             Alert::success('Información', 'Sus datos han sido almacenados correctamente. Recibirá una notificación vía correo electrónico dentro de 10 días hábiles sobre su trámite de registro.');
-        } catch(Exception $e) {
+        } catch(Exception) {
             DB::rollBack();
-            Alert::error('Ha ocurrido un error', $e->getMessage());
+            Alert::error('Error', 'No se pudo almacenar su información');
         } finally {
             return back();
         }
