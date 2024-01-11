@@ -7,7 +7,7 @@
     <div class="espacio-menu"></div>
     <div class="p-3 w-100">
         <div class="row">
-            <h1 class="text-center">Resolución</h1>
+            <h1 class="text-center">Resolución de investigadores</h1>
         </div>
         <hr>
         <div class="row mt-4">

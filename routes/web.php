@@ -5,6 +5,7 @@ use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\GestionController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,14 @@ Route::post('/gestion/investigadores/documentos/agregar-observacion',
 [DocumentosController::class, 'agregarObservacion'])->name('documentos.observaciones.agregar');
 Route::post('/gestion/investigadores/documentos/eliminar-observacion',
 [DocumentosController::class, 'eliminarObservacion'])->name('documentos.observaciones.eliminar');
+
+// Rutas para gestionar usuarios del sistema
+Route::get('/gestion/usuarios', [UsuariosController::class, 'inicio'])->name('usuarios.listar');
+Route::get('/gestion/usuarios/{id}/reestablecer-password/', [UsuariosController::class, 'reestablecerPassword'])
+->name('usuarios.password.reestablecer.get');
+Route::post('/gestion/usuarios/reestablecer-password', [UsuariosController::class, 'actualizarPassword'])
+->name('usuarios.password.reestablecer.post');
+Route::post('/gestion/usuarios/eliminar', [UsuariosController::class, 'eliminar'])->name('usuarios.eliminar');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
