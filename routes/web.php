@@ -44,10 +44,12 @@ Route::post('/gestion/investigadores/documentos/eliminar-observacion',
 
 // Rutas para gestionar usuarios del sistema
 Route::get('/gestion/usuarios', [UsuariosController::class, 'inicio'])->name('usuarios.listar');
-Route::get('/gestion/usuarios/{id}/reestablecer-password/', [UsuariosController::class, 'reestablecerPassword'])
+Route::get('/gestion/usuarios/reestablecer-password/{id}', [UsuariosController::class, 'reestablecerPassword'])
 ->name('usuarios.password.reestablecer.get');
 Route::post('/gestion/usuarios/reestablecer-password', [UsuariosController::class, 'actualizarPassword'])
 ->name('usuarios.password.reestablecer.post');
+Route::get('/gestion/usuarios/editar/{id}', [UsuariosController::class, 'editar'])->name('usuarios.editar.get');
+Route::post('/gestion/usuarios/editar', [UsuariosController::class, 'actualizar'])->name('usuarios.editar.post');
 Route::post('/gestion/usuarios/eliminar', [UsuariosController::class, 'eliminar'])->name('usuarios.eliminar');
 
 Route::get('/dashboard', function () {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TiposUsuario;
 use App\Models\User;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,6 +24,41 @@ class UsuariosController extends Controller
     function reestablecerPassword($id) {
         $usuario = User::findOrFail($id);
         return view('usuarios.reestablecer-password', compact('usuario'));
+    }
+
+    function editar($id) {
+        $usuario = User::findOrFail($id);
+        $tiposUsuarios = TiposUsuario::all();
+        return view('usuarios.editar', compact('usuario', 'tiposUsuarios'));
+    }
+
+    function actualizar(Request $request) {
+        $request->validate([
+            'name' => 'required|string|min:3',
+            'username' => 'required|string|min:5|unique:users',
+            'email' => 'required|email|unique:users',
+            'user_type' => 'required|numeric'
+        ]);
+
+        $usuario = User::find($request->id_usuario);
+
+        if ($usuario === null) {
+            Alert::error('Error', 'No se encontró el usuario especificado');
+            return back();
+        }
+
+        try {
+            $usuario->name = $request->name;
+            $usuario->username = $request->username;
+            $usuario->email = $request->email;
+            $usuario->user_type = $request->user_type;
+            $usuario->save();  
+            Alert::success('Información', 'Los datos del usuario se han actualizado correctamente');
+        } catch (Exception) {
+            Alert::error('Error', 'No se pudo actualizar la información del usuario');
+        } finally {
+            return back();
+        } 
     }
 
     function actualizarPassword(Request $request) {

@@ -34,9 +34,15 @@
                             <tr>
                                 <td>{{ $usuario->name }}</td>
                                 <td>{{ $usuario->username}}</td>
-                                <td>{{ $usuario->user_type }}</td>
+                                <td>{{ $usuario->tipo_usuario->nombre }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td class="d-flex justify-content-center">
+                                    <a href="{{ route('usuarios.editar.get', $usuario->id) }}"
+                                        class="btn btn-sm btn-warning me-2" data-bs-toggle="tooltip"
+                                        data-bs-title="Editar información de usuario">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i>
+                                        Editar
+                                    </a>
                                     <a href="{{ route('usuarios.password.reestablecer.get', $usuario->id) }}"
                                         class="btn btn-sm btn-success me-2" data-bs-toggle="tooltip"
                                         data-bs-title="Reestablecer la contraseña de este usuario">
